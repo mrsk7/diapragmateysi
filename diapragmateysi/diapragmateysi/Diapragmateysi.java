@@ -13,12 +13,26 @@
 	 * So when rotating first quadrant, we set 0 to 3, 3 to 5, 5 to 2 and 2 to 0
 	 * This mapping is given by state_indices array.
 	 */
-package diapragmateysi;
 
 import java.util.HashSet;
 import java.util.LinkedList;
 
 public class Diapragmateysi {
+	
+	private class Node {
+		
+		public StringBuilder content = null;;
+		public StringBuilder path = null;
+		
+		public Node(StringBuilder sb,StringBuilder parent) {
+			content = sb;
+			this.path = new StringBuilder(parent);
+		}
+		
+		public void updatePath(int i) {
+			path.append(i+1);
+		}
+	}
 	
 	public String final_state = "bgbGgGGrGyry";
 	public int[][] state_indices = { {0,3,5,2} , {1,4,6,3}, {5,8,10,7}, {6,9,11,8} };
@@ -31,7 +45,7 @@ public class Diapragmateysi {
 		q = new LinkedList<Node>();
 		closed_set = new HashSet<Integer>();
 	}
-	
+
 	public String run() {
 		StringBuilder initial = new StringBuilder(input);
 		Node start = new Node(initial,new StringBuilder());

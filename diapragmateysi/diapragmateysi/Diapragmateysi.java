@@ -36,10 +36,10 @@ public class Diapragmateysi {
 		StringBuilder initial = new StringBuilder(input);
 		Node start = new Node(initial,new StringBuilder());
 		q.add(start);
+		closed_set.add(coding(start.content));
 		Node head;
 		while(!q.isEmpty()) {
 			head = q.remove();
-			closed_set.add(coding(head.content));
 			if (head.content.toString().equals(final_state)) 
 				return head.path.toString();
 			createNodes(head);
@@ -63,6 +63,7 @@ public class Diapragmateysi {
 			Node node = new Node(sb,head.path);
 			node.updatePath(i);
 			q.add(node);
+			closed_set.add(coding(node.content));
 		}		
 	}
 	
